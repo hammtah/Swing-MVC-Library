@@ -21,7 +21,7 @@ public class BookCreate extends JFrame{
 
     public BookCreate(){
         setTitle("1990's Library");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setContentPane(contentPane);
         pack();
         // Set the frame location to the center of the screen

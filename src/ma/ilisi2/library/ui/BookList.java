@@ -17,12 +17,12 @@ public class BookList extends JFrame{
     private JTextField tdescription;
     private JLabel ttitle;
     private JPanel bookpanel;
-    private JScrollPane booklistpanel;
+    private JPanel booklistpanel;
 
     public BookList() {
         setTitle("1990's Library");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        booklistpanel = new JScrollPane();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        booklistpanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
         setContentPane(booklistpanel);
 
         Collection<Book> books = getBooks();

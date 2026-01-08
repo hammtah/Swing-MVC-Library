@@ -20,14 +20,15 @@ public class BookPanel extends JPanel {
     public BookPanel(Book b) {
         setupUI();
         setLayout(new BorderLayout());
+        setMinimumSize(new Dimension(100, 200));
+        setBorder(BorderFactory.createTitledBorder("Book Details"));
         add(bookpanel, BorderLayout.CENTER);
         setBookData(b);
     }
 
     private void setupUI() {
         bookpanel = new JPanel();
-        bookpanel.setLayout(new GridLayoutManager(6, 3, new Insets(0, 0, 0, 0), -1, -1));
-
+        bookpanel.setLayout(new GridLayoutManager(6, 3, new Insets(10, 30, 30, 50), -1, -1));
         // Horizontal Spacer
         bookpanel.add(new Spacer(), new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
 
