@@ -1,31 +1,36 @@
 package ma.ilisi2.library.ui;
 
 import ma.ilisi2.library.controller.BookController;
+import ma.ilisi2.library.models.bo.Book;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
-import java.sql.SQLOutput;
 
 public class BookCreate extends JFrame{
-    private JPanel contentPane;
-    private JTextField ttitle;
-    private JTextField tauthor;
-    private JTextField tyear;
-    private JTextField tisbn;
-    private JTextField tprice;
-    private JTextArea tdescription;
-    private JButton createButton;
-    private JButton clearButton;
+    public JPanel contentPane;
+    public JTextField ttitle;
+    public JTextField tauthor;
+    public JTextField tyear;
+    public JTextField tisbn;
+    public JTextField tprice;
+    public JTextArea tdescription;
+    public JButton createButton;
+    public JButton clearButton;
+    public JTextField id;
+    public JLabel idLabel;
 
-    public BookCreate(){
+    public BookCreate(Book b){
         setTitle("1990's Library");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setContentPane(contentPane);
         pack();
         // Set the frame location to the center of the screen
         setLocationRelativeTo(null);
+        if (b != null) {
+            fillFields(b);
+        }
         // Save button event listener
         createButton.addActionListener(new ActionListener() {
             @Override
@@ -70,5 +75,14 @@ public class BookCreate extends JFrame{
         tisbn.setText("");
         tprice.setText("");
         tdescription.setText("");
+    }
+
+    public void fillFields(Book b) {
+        ttitle.setText(b.getTitle());
+        tauthor.setText(b.getAuthor());
+        tyear.setText(String.valueOf(b.getYear()));
+        tisbn.setText(b.getIsbn());
+        tprice.setText(String.valueOf(b.getPrice()));
+        tdescription.setText(b.getDescription());
     }
 }

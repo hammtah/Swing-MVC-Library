@@ -53,5 +53,41 @@ public class BookDao implements IBookDao{
 
         return books;
     }
+    public Book get(int id) throws SQLException{
+        String getString = "SELECT * FROM book WHERE id = ?";
+        var conn = Connection.getConnection();
+        var pst = conn.prepareStatement(getString);
+        pst.setInt(1, id);
+        var res = pst.executeQuery();
+        res.next();
+        return new Book(
+                res.getInt("year"),
+                res.getString("isbn"),
+                res.getString("genre"),
+                res.getFloat("price"),
+                res.getString("description"),
+                res.getString("title"),
+                res.getString("author"),
+                res.getString("img")
+        );
+
+    }
+
+    public void update(String id, Book b) throws SQLException {
+        String updateString = "UPDATE BOOKS SET img=?, nb=?, year=?, genre=?, price=?, description=?, title=?, author=? WHERE isbn=?";
+        var conn = Connection.getConnection();
+        var pst = conn.prepareStatement(updateString);
+        pst.setString(1, b.getImg());
+        pst.setInt(2, b.getNb());
+        pst.setInt(3, b.getYear());
+        pst.setString(4, b.getGenre());
+        pst.setFloat(5, b.getPrice());
+        pst.setString(6, b.getDescription());
+        pst.setString(7, b.getTitle());
+        pst.setString(8, b.getAuthor());
+        pst.setString(9, b.getIsbn());
+        pst.executeUpdate();
+        conn.close();
+    }
 
 }

@@ -1,7 +1,5 @@
 package ma.ilisi2.library.ui;
 
-import ma.ilisi2.library.models.dao.BookDao.BookDao;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,6 +8,7 @@ public class Home extends JFrame{
     private JButton addABookButton;
     private JPanel panel1;
     private JButton exploreBooksButton;
+    private JButton updateBookButton;
 
     public Home() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -19,13 +18,19 @@ public class Home extends JFrame{
         addABookButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new BookCreate();
+                new BookCreate(null);
             }
         });
         exploreBooksButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 new BookList();
+            }
+        });
+        updateBookButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                new BookUpdate();
             }
         });
         setVisible(true);
