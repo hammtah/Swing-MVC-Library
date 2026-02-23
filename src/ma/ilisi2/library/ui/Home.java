@@ -11,6 +11,7 @@ public class Home extends JFrame{
     private JButton updateBookButton;
     private JButton borrowBook;
     private JButton listBorrowsButton;
+    private JButton addClient;
 
     public Home() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -51,6 +52,15 @@ public class Home extends JFrame{
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     new BorrowList();
+                }
+            });
+        }
+
+        if (addClient != null) {
+            addClient.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    new UserCreate();
                 }
             });
         }
