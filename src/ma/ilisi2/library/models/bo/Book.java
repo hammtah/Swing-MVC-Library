@@ -1,5 +1,14 @@
 package ma.ilisi2.library.models.bo;
+
+import jakarta.persistence.*;
+
+@Entity
+@Table(name="books")
 public class Book {
+    @Id
+    @Column(name = "isbn", nullable = false)
+    private String isbn;
+
     public Book(int year, String isbn, String genre, float price, String description, String title, String author, String img) {
         this.year = year;
         this.isbn = isbn;
@@ -10,10 +19,11 @@ public class Book {
         this.author = author;
         this.img = img;
     }
+    public Book() {
+    }
     private String img;
     private int nb;
     private int year;
-    private String isbn;
     private String genre;
     private float price;
     private String description;

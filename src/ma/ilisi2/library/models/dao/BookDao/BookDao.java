@@ -6,7 +6,6 @@ import ma.ilisi2.library.utility.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 
 public class BookDao implements IBookDao{
 

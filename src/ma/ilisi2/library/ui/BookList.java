@@ -1,8 +1,7 @@
 package ma.ilisi2.library.ui;
 
+import ma.ilisi2.library.controller.BookController;
 import ma.ilisi2.library.models.bo.Book;
-import ma.ilisi2.library.models.dao.BookDao.BookDao;
-import ma.ilisi2.library.models.dao.BookDao.IBookDao;
 
 import javax.swing.*;
 import java.awt.*;
@@ -36,9 +35,10 @@ public class BookList extends JFrame{
         setVisible(true);
     }
     private Collection<Book> getBooks(){
-        IBookDao bookDao = new BookDao();
+//        IBookDao bookDao = new BookDao();
+        BookController bookController = new BookController();
         try {
-            return bookDao.getAll();
+            return bookController.getAllBooks();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }

@@ -1,6 +1,5 @@
 package ma.ilisi2.library.ui;
 
-import ma.ilisi2.library.controller.BookController;
 import ma.ilisi2.library.models.bo.Book;
 import ma.ilisi2.library.models.dao.BookDao.BookDao;
 
