@@ -5,7 +5,6 @@ import ma.ilisi2.library.models.bo.Book;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.Collection;
 
 public class BookList extends JFrame{
@@ -36,13 +35,7 @@ public class BookList extends JFrame{
         setVisible(true);
     }
     private Collection<Book> getBooks(){
-//        IBookDao bookDao = new BookDao();
         BookController bookController = new BookController();
-        try {
-            return bookController.getAllBooks();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        return bookController.getAllBooks();
     }
 }

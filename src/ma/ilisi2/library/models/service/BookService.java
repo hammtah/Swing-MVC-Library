@@ -37,6 +37,14 @@ public class BookService implements IBookService {
             throw new BookServiceException("Cannot retrieve book");
         }
     }
+    public void update(Book b) throws BookServiceException{
+        try{
+            bookDao.update(b);
+        } catch (DaoException e) {
+            System.out.println(e.getMessage());
+            throw new BookServiceException("Cannot update book");
+        }
+    }
     public void update(int id, Book b) throws BookServiceException{
         try{
 //            bookDao.update(id, b);

@@ -6,7 +6,6 @@ import ma.ilisi2.library.models.bo.Book;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class BookCreate extends JFrame{
     public JPanel contentPane;
@@ -52,20 +51,16 @@ public class BookCreate extends JFrame{
     }
     private void createBook() {
         BookController bookController = new BookController();
-        try {
-            bookController.addBook(
-                    Integer.parseInt(tyear.getText()),
-                    tisbn.getText(),
-                    "", // genre 
-                    Float.parseFloat(tprice.getText()),
-                    tdescription.getText(),
-                    ttitle.getText(),
-                    tauthor.getText(),
-                "" // img 
-            );
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+        bookController.addBook(
+                Integer.parseInt(tyear.getText()),
+                tisbn.getText(),
+                "", // genre 
+                Float.parseFloat(tprice.getText()),
+                tdescription.getText(),
+                ttitle.getText(),
+                tauthor.getText(),
+            "" // img 
+        );
     }
 
     private void clearBook() {

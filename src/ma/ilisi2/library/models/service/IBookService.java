@@ -8,6 +8,7 @@ public interface IBookService {
     public void save(Book b) throws BookServiceException;
     public Collection<Book> getAll() throws BookServiceException;
     public Book get(int id) throws BookServiceException;
+    public void update(Book b) throws BookServiceException;
     public void update(int id, Book b) throws BookServiceException;
     public void delete(int id) throws BookServiceException;
 //    public boolean isDelayed(Borrow b);

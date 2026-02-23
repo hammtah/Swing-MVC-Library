@@ -1,12 +1,11 @@
 package ma.ilisi2.library.ui;
 
 import ma.ilisi2.library.models.bo.Book;
-import ma.ilisi2.library.models.dao.BookDao.BookDao;
+import ma.ilisi2.library.controller.BookController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.SQLException;
 
 public class BookUpdate extends JFrame {
     private BookCreate contentPane;
@@ -23,8 +22,6 @@ public class BookUpdate extends JFrame {
         pack();
         // Set the frame location to the center of the screen
         setLocationRelativeTo(null);
-        // Save button event listener
-
         // Set the frame visible
         setVisible(true);
     }
@@ -57,13 +54,18 @@ public class BookUpdate extends JFrame {
         contentPane.createButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Book b = getUiBook();
-                try {
-                    int id = Integer.parseInt(contentPane.id.getText());
-                    new BookDao().update(id, b);
-                } catch (Exception ex) {
-                    System.out.println(ex.getMessage());
-                }
+                int id = Integer.parseInt(contentPane.id.getText());
+                new BookController().updateBook(
+                        id,
+                        Integer.parseInt(contentPane.tyear.getText()),
+                        contentPane.tisbn.getText(),
+                        "", // genre
+                        Float.parseFloat(contentPane.tprice.getText()),
+                        contentPane.tdescription.getText(),
+                        contentPane.ttitle.getText(),
+                        contentPane.tauthor.getText(),
+                        "" // img
+                );
             }
         });
 
