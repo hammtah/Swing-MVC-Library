@@ -40,28 +40,12 @@
               <text value="Explore Books"/>
             </properties>
           </component>
-          <component id="d4d86" class="javax.swing.JButton" binding="borrowBook">
-            <constraints>
-              <grid row="1" column="0" row-span="3" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Borrow"/>
-            </properties>
-          </component>
           <component id="58f50" class="javax.swing.JButton" binding="listBorrowsButton" default-binding="true">
             <constraints>
               <grid row="2" column="1" row-span="2" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="List Borrows"/>
-            </properties>
-          </component>
-          <component id="8d522" class="javax.swing.JButton" binding="addClient">
-            <constraints>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="Add Client"/>
             </properties>
           </component>
         </children>
