@@ -61,7 +61,7 @@ public class BookUpdate extends JFrame {
                 try {
                     int id = Integer.parseInt(contentPane.id.getText());
                     new BookDao().update(id, b);
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
                     System.out.println(ex.getMessage());
                 }
             }

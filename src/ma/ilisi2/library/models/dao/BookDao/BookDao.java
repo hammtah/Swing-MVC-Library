@@ -1,5 +1,6 @@
 package ma.ilisi2.library.models.dao.BookDao;
 
+import ma.ilisi2.library.exception.DaoException;
 import ma.ilisi2.library.models.bo.Book;
 import ma.ilisi2.library.utility.Connection;
 
@@ -10,33 +11,68 @@ import java.util.Collection;
 public class BookDao implements IBookDao{
 
     @Override
-    public void save(Book b) throws SQLException {
-        var conn = Connection.getConnection();
-        var pst = conn.prepareStatement("INSERT INTO books (img, nb, year, isbn, genre, price, description, title, author) \n" +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+    public void save(Book b) throws DaoException {
+        try {
+            var conn = Connection.getConnection();
+            var pst = conn.prepareStatement("INSERT INTO books (img, nb, year, isbn, genre, price, description, title, author) \n" +
+                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
 
-        pst.setString(1, b.getImg());
-        pst.setInt(2, b.getNb());
-        pst.setInt(3, b.getYear());
-        pst.setString(4, b.getIsbn());
-        pst.setString(5, b.getGenre());
-        pst.setFloat(6, b.getPrice());
-        pst.setString(7, b.getDescription());
-        pst.setString(8, b.getTitle());
-        pst.setString(9, b.getAuthor());
+            pst.setString(1, b.getImg());
+            pst.setInt(2, b.getNb());
+            pst.setInt(3, b.getYear());
+            pst.setString(4, b.getIsbn());
+            pst.setString(5, b.getGenre());
+            pst.setFloat(6, b.getPrice());
+            pst.setString(7, b.getDescription());
+            pst.setString(8, b.getTitle());
+            pst.setString(9, b.getAuthor());
 
-        pst.executeUpdate();
-        conn.close();
+            pst.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            throw new DaoException("Erreur dans BD");
+        }
     }
 
     @Override
-    public Collection<Book> getAll() throws SQLException {
-        ArrayList<Book> books = new ArrayList<>();
-        var conn = Connection.getConnection();
-        var st = conn.createStatement();
-        var res = st.executeQuery("SELECT * FROM BOOKS");
-        while(res.next()){
-            var book = new Book(
+    public Collection<Book> getAll() throws DaoException {
+        try {
+            ArrayList<Book> books = new ArrayList<>();
+            var conn = Connection.getConnection();
+            var st = conn.createStatement();
+            var res = st.executeQuery("SELECT * FROM BOOKS");
+            while (res.next()) {
+                var book = new Book(
+                        res.getInt("id"),
+                        res.getInt("year"),
+                        res.getString("isbn"),
+                        res.getString("genre"),
+                        res.getFloat("price"),
+                        res.getString("description"),
+                        res.getString("title"),
+                        res.getString("author"),
+                        res.getString("img")
+                );
+                books.add(book);
+            }
+            conn.close();
+
+            return books;
+        } catch (Exception e) {
+            throw new DaoException("Erreur dans BD");
+
+        }
+    }
+
+    public Book get(int id) throws DaoException{
+        try {
+            String getString = "SELECT * FROM books WHERE id = ?";
+            var conn = Connection.getConnection();
+            var pst = conn.prepareStatement(getString);
+            pst.setInt(1, id);
+            var res = pst.executeQuery();
+            res.next();
+            return new Book(
                     res.getInt("id"),
                     res.getInt("year"),
                     res.getString("isbn"),
@@ -47,49 +83,38 @@ public class BookDao implements IBookDao{
                     res.getString("author"),
                     res.getString("img")
             );
-            books.add(book);
+        } catch (Exception e) {
+            throw new DaoException("Erreur dans BD");
+
         }
-        conn.close();
-
-        return books;
     }
 
-    public Book get(int id) throws SQLException{
-        String getString = "SELECT * FROM books WHERE id = ?";
-        var conn = Connection.getConnection();
-        var pst = conn.prepareStatement(getString);
-        pst.setInt(1, id);
-        var res = pst.executeQuery();
-        res.next();
-        return new Book(
-                res.getInt("id"),
-                res.getInt("year"),
-                res.getString("isbn"),
-                res.getString("genre"),
-                res.getFloat("price"),
-                res.getString("description"),
-                res.getString("title"),
-                res.getString("author"),
-                res.getString("img")
-        );
+    @Override
+    public void update(Book b) throws DaoException {
+        throw new DaoException("Not implemented yet");
     }
 
-    public void update(int id, Book b) throws SQLException {
-        String updateString = "UPDATE BOOKS SET img=?, nb=?, year=?, genre=?, price=?, description=?, title=?, author=?, isbn=? WHERE id=?";
-        var conn = Connection.getConnection();
-        var pst = conn.prepareStatement(updateString);
-        pst.setString(1, b.getImg());
-        pst.setInt(2, b.getNb());
-        pst.setInt(3, b.getYear());
-        pst.setString(4, b.getGenre());
-        pst.setFloat(5, b.getPrice());
-        pst.setString(6, b.getDescription());
-        pst.setString(7, b.getTitle());
-        pst.setString(8, b.getAuthor());
-        pst.setString(9, b.getIsbn());
-        pst.setInt(10, id);
-        pst.executeUpdate();
-        conn.close();
+    public void update(int id, Book b) throws DaoException {
+        try {
+            String updateString = "UPDATE BOOKS SET img=?, nb=?, year=?, genre=?, price=?, description=?, title=?, author=?, isbn=? WHERE id=?";
+            var conn = Connection.getConnection();
+            var pst = conn.prepareStatement(updateString);
+            pst.setString(1, b.getImg());
+            pst.setInt(2, b.getNb());
+            pst.setInt(3, b.getYear());
+            pst.setString(4, b.getGenre());
+            pst.setFloat(5, b.getPrice());
+            pst.setString(6, b.getDescription());
+            pst.setString(7, b.getTitle());
+            pst.setString(8, b.getAuthor());
+            pst.setString(9, b.getIsbn());
+            pst.setInt(10, id);
+            pst.executeUpdate();
+            conn.close();
+        } catch (Exception e) {
+            throw new DaoException("Erreur dans BD");
+        }
     }
+
 
 }
