@@ -17,5 +17,15 @@ public interface IBorrowService {
     void update(int id, Borrow b) throws BorrowServiceException;
 
     void delete(int id) throws BorrowServiceException;
+
+    /**
+     * Create a new borrow for a given book and user.
+     */
+    Borrow borrowBook(int bookId, int userId) throws BorrowServiceException;
+
+    /**
+     * Mark an existing borrow as returned.
+     */
+    Borrow returnBorrow(int borrowId) throws BorrowServiceException;
 }
 
