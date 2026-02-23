@@ -31,6 +31,8 @@
 
         <!-- Entity mapping -->
         <mapping class="ma.ilisi2.library.models.bo.Book"/>
+        <mapping class="ma.ilisi2.library.models.bo.User"/>
+        <mapping class="ma.ilisi2.library.models.bo.Borrow"/>
 
     </session-factory>
 </hibernate-configuration>
