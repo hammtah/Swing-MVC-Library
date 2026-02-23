@@ -17,6 +17,7 @@ public class BookList extends JFrame{
     private JLabel ttitle;
     private JPanel bookpanel;
     private JPanel booklistpanel;
+    private JTextField tid;
 
     public BookList() {
         setTitle("1990's Library");

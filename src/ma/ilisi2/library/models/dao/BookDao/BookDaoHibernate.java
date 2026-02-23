@@ -39,7 +39,7 @@ public class BookDaoHibernate implements IBookDao{
     }
 
     public void update(Book b) {
-        try(var session = HibernateUtil.getSessionFactory().openSession();) {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
             session.beginTransaction();
             session.merge(b);
 //            session.update(b);
@@ -49,11 +49,17 @@ public class BookDaoHibernate implements IBookDao{
             throw new RuntimeException(e);
         }
     }
-    //Book should have id(isbn)
-//    @Override
-    public void update(String id, Book b) throws SQLException {
-        update(b);
+
+    @Override
+    public void update(int id, Book b) throws SQLException {
+        try (var session = HibernateUtil.getSessionFactory().openSession()) {
+            session.beginTransaction();
+            b.setId(id);
+            session.merge(b);
+            session.getTransaction().commit();
+        } catch (HibernateException e) {
+            System.out.println(e.getMessage());
+            throw new RuntimeException(e);
+        }
     }
-
-
 }

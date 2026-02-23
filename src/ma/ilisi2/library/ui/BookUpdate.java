@@ -14,8 +14,8 @@ public class BookUpdate extends JFrame {
         setTitle("Update a Book");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         contentPane = new BookCreate(null);
-//        contentPane.id.setVisible(true);
-//        contentPane.idLabel.setVisible(true);
+        contentPane.id.setVisible(true);
+        contentPane.idLabel.setVisible(true);
         contentPane.createButton.setText("Update");
         contentPane.clearButton.setText("Cancel");
         clearListeners();
@@ -58,9 +58,9 @@ public class BookUpdate extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Book b = getUiBook();
-                var txt = contentPane.tisbn.getText();
                 try {
-                    new BookDao().update(txt, b);
+                    int id = Integer.parseInt(contentPane.id.getText());
+                    new BookDao().update(id, b);
                 } catch (SQLException ex) {
                     System.out.println(ex.getMessage());
                 }

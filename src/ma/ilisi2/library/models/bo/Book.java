@@ -3,11 +3,40 @@ package ma.ilisi2.library.models.bo;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="books")
+@Table(name = "books")
 public class Book {
+
     @Id
-    @Column(name = "isbn", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "isbn", nullable = false, unique = true)
     private String isbn;
+
+    private String img;
+    private int nb;
+    private int year;
+    private String genre;
+    private float price;
+    private String description;
+    private String title;
+    private String author;
+
+    public Book() {
+    }
+
+    public Book(Integer id, int year, String isbn, String genre, float price, String description, String title, String author, String img) {
+        this.id = id;
+        this.year = year;
+        this.isbn = isbn;
+        this.genre = genre;
+        this.price = price;
+        this.description = description;
+        this.title = title;
+        this.author = author;
+        this.img = img;
+    }
 
     public Book(int year, String isbn, String genre, float price, String description, String title, String author, String img) {
         this.year = year;
@@ -19,16 +48,14 @@ public class Book {
         this.author = author;
         this.img = img;
     }
-    public Book() {
+
+    public Integer getId() {
+        return id;
     }
-    private String img;
-    private int nb;
-    private int year;
-    private String genre;
-    private float price;
-    private String description;
-    private String title;
-    private String author;
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getImg() {
         return img;

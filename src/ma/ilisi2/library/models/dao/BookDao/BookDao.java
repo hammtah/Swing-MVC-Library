@@ -37,6 +37,7 @@ public class BookDao implements IBookDao{
         var res = st.executeQuery("SELECT * FROM BOOKS");
         while(res.next()){
             var book = new Book(
+                    res.getInt("id"),
                     res.getInt("year"),
                     res.getString("isbn"),
                     res.getString("genre"),
@@ -52,14 +53,16 @@ public class BookDao implements IBookDao{
 
         return books;
     }
+
     public Book get(int id) throws SQLException{
-        String getString = "SELECT * FROM book WHERE id = ?";
+        String getString = "SELECT * FROM books WHERE id = ?";
         var conn = Connection.getConnection();
         var pst = conn.prepareStatement(getString);
         pst.setInt(1, id);
         var res = pst.executeQuery();
         res.next();
         return new Book(
+                res.getInt("id"),
                 res.getInt("year"),
                 res.getString("isbn"),
                 res.getString("genre"),
@@ -69,11 +72,10 @@ public class BookDao implements IBookDao{
                 res.getString("author"),
                 res.getString("img")
         );
-
     }
 
-    public void update(String id, Book b) throws SQLException {
-        String updateString = "UPDATE BOOKS SET img=?, nb=?, year=?, genre=?, price=?, description=?, title=?, author=? WHERE isbn=?";
+    public void update(int id, Book b) throws SQLException {
+        String updateString = "UPDATE BOOKS SET img=?, nb=?, year=?, genre=?, price=?, description=?, title=?, author=?, isbn=? WHERE id=?";
         var conn = Connection.getConnection();
         var pst = conn.prepareStatement(updateString);
         pst.setString(1, b.getImg());
@@ -85,6 +87,7 @@ public class BookDao implements IBookDao{
         pst.setString(7, b.getTitle());
         pst.setString(8, b.getAuthor());
         pst.setString(9, b.getIsbn());
+        pst.setInt(10, id);
         pst.executeUpdate();
         conn.close();
     }
