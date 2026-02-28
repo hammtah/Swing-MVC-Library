@@ -1,12 +1,10 @@
 package ma.ilisi2.library.ui;
 
+import ma.ilisi2.library.controller.BookController;
 import ma.ilisi2.library.models.bo.Book;
-import ma.ilisi2.library.models.dao.BookDao.BookDao;
-import ma.ilisi2.library.models.dao.BookDao.IBookDao;
 
 import javax.swing.*;
 import java.awt.*;
-import java.sql.SQLException;
 import java.util.Collection;
 
 public class BookList extends JFrame{
@@ -18,6 +16,7 @@ public class BookList extends JFrame{
     private JLabel ttitle;
     private JPanel bookpanel;
     private JPanel booklistpanel;
+    private JTextField tid;
 
     public BookList() {
         setTitle("1990's Library");
@@ -36,12 +35,7 @@ public class BookList extends JFrame{
         setVisible(true);
     }
     private Collection<Book> getBooks(){
-        IBookDao bookDao = new BookDao();
-        try {
-            return bookDao.getAll();
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return null;
+        BookController bookController = new BookController();
+        return bookController.getAllBooks();
     }
 }

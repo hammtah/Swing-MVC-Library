@@ -14,6 +14,7 @@ public class BookPanel extends JPanel {
     private JTextField tauthor;
     private JTextField tyear;
     private JTextField tisbn;
+    private JTextField tid;
     private JTextField tdescription;
     private JLabel ttitle;
 
@@ -28,7 +29,7 @@ public class BookPanel extends JPanel {
 
     private void setupUI() {
         bookpanel = new JPanel();
-        bookpanel.setLayout(new GridLayoutManager(6, 3, new Insets(10, 30, 30, 50), -1, -1));
+        bookpanel.setLayout(new GridLayoutManager(7, 3, new Insets(10, 30, 30, 50), -1, -1));
         // Horizontal Spacer
         bookpanel.add(new Spacer(), new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
 
@@ -37,18 +38,20 @@ public class BookPanel extends JPanel {
         ttitle = new JLabel("Title");
         bookpanel.add(ttitle, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
-        bookpanel.add(new JLabel("Isbn"), new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        bookpanel.add(new JLabel("Price"), new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        bookpanel.add(new JLabel("Author"), new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        bookpanel.add(new JLabel("Year"), new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        bookpanel.add(new JLabel("Description"), new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bookpanel.add(new JLabel("Id"), new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bookpanel.add(new JLabel("Isbn"), new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bookpanel.add(new JLabel("Price"), new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bookpanel.add(new JLabel("Author"), new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bookpanel.add(new JLabel("Year"), new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        bookpanel.add(new JLabel("Description"), new GridConstraints(6, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
 
         // Text Fields (matching your XML properties: non-editable)
-        tisbn = createField(1);
-        tprice = createField(2);
-        tauthor = createField(3);
-        tyear = createField(4);
-        tdescription = createField(5);
+        tid = createField(1);
+        tisbn = createField(2);
+        tprice = createField(3);
+        tauthor = createField(4);
+        tyear = createField(5);
+        tdescription = createField(6);
     }
 
     private JTextField createField(int row) {
@@ -60,6 +63,7 @@ public class BookPanel extends JPanel {
 
     // Getters for setting data later
     public void setBookData(Book b) {
+        tid.setText(String.valueOf(b.getId()));
         ttitle.setText(b.getTitle());
         tisbn.setText(b.getIsbn());
         tprice.setText(String.valueOf(b.getPrice()));

@@ -1,0 +1,38 @@
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "https://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+    <session-factory>
+
+        <!-- JDBC -->
+        <property name="hibernate.connection.driver_class">
+            org.sqlite.JDBC
+        </property>
+
+        <property name="hibernate.connection.url">
+            jdbc:sqlite:identifier.sqlite
+        </property>
+
+        <!-- SQLite dialect (community) -->
+        <property name="hibernate.dialect">
+            org.hibernate.community.dialect.SQLiteDialect
+        </property>
+
+        <!-- Hibernate behavior -->
+        <property name="hibernate.hbm2ddl.auto">update</property>
+        <property name="hibernate.show_sql">true</property>
+        <property name="hibernate.format_sql">true</property>
+
+        <!--  automatic session management-->
+        <property name="hibernate.current_session_context_class">
+            thread
+        </property>
+
+        <!-- Entity mapping -->
+        <mapping class="ma.ilisi2.library.models.bo.Book"/>
+        <mapping class="ma.ilisi2.library.models.bo.User"/>
+        <mapping class="ma.ilisi2.library.models.bo.Borrow"/>
+
+    </session-factory>
+</hibernate-configuration>

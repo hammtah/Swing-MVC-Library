@@ -28,5 +28,7 @@ bin/
 ### Mac OS ###
 .DS_Store
 
-target
 target/*
+target
+.idea/
+/target/
