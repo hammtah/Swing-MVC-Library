@@ -33,9 +33,9 @@ public class Home extends JFrame {
         headerPanel.setOpaque(false);
 
         JLabel title = new JLabel("1990's Library");
-        title.setFont(title.getFont().deriveFont(Font.BOLD, 26f));
+        title.setFont(title.getFont().deriveFont(Font.BOLD, 32f));
         JLabel subtitle = new JLabel("Manage books, clients and borrows from one place.");
-        subtitle.setFont(subtitle.getFont().deriveFont(Font.PLAIN, 14f));
+        subtitle.setFont(subtitle.getFont().deriveFont(Font.PLAIN, 18f));
         subtitle.setForeground(new Color(90, 90, 90));
 
         headerPanel.add(title, BorderLayout.NORTH);
@@ -70,8 +70,8 @@ public class Home extends JFrame {
     private JButton createPrimaryButton(String text) {
         JButton button = new JButton(text);
         button.setFocusPainted(false);
-        button.setFont(button.getFont().deriveFont(Font.BOLD, 14f));
-        button.setPreferredSize(new Dimension(200, 80));
+        button.setFont(button.getFont().deriveFont(Font.BOLD, 18f));
+        button.setPreferredSize(new Dimension(240, 90));
         return button;
     }
 
